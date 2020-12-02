@@ -1,4 +1,4 @@
-#include "graph.h"
+#include "graphs.h"
 
 // King graph 
 graph graph_king(index n, index m) // The king can only move forward one step but in any direction
