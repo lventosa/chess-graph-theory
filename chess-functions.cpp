@@ -3,106 +3,106 @@
 // King graph 
 graph graph_king(index n, index m) // The king can only move forward one step but in any direction
 {
-    graph Kg(n*m); 
+    graph king(n*m); 
     for(index i=0; i<n; i++)
         for(index j=0; j<m; j++){
             vertex v = i*m+i; 
             if(j<m-1){
-                Kg[v].push_back(v+1); 
-                Kg[v+1].push_back(v);
+                king[v].push_back(v+1); 
+                king[v+1].push_back(v);
             } 
 
             if(i<n-1){
-                Kg[v].push_back(v+m);
-                Kg[v+m].push_back(v);
+                king[v].push_back(v+m);
+                king[v+m].push_back(v);
                 if(j<m-1){ 
-                    Kg[v].push_back(v+m+1);
-                    Kg[v+m+1].push_back(v);
+                    king[v].push_back(v+m+1);
+                    king[v+m+1].push_back(v);
                 } 
                 if(j>0){
-                    Kg[v].push_back(v+m-1);
-                    Kg[v+m-1].push_back(v);
+                    king[v].push_back(v+m-1);
+                    king[v+m-1].push_back(v);
                 }
             } 
         }
 
-        return Kg;
+        return king;
 }
 
 // Rook graph
 graph graph_rook(index n, index m) // The rook moves in a straight line
 {
-    graph Rk(n*m);
+    graph rook(n*m);
     for(index i=0; i<n; i++){
         for(index j=0; j<m; j++){
             vertex v = i*m+j; 
             for(index k=1; i+k<n; k++){ 
-                Rk[v].push_back(v+k*m);
-                Rk[v+k*m].push_back(v);
+                rook[v].push_back(v+k*m);
+                rook[v+k*m].push_back(v);
             }
             for(index k=1; j+k<m; k++){ 
-                Rk[v].push_back(v+k);
-                Rk[v+k].push_back(v);
+                rook[v].push_back(v+k);
+                rook[v+k].push_back(v);
             }
                
         }
     }
 
-    return Rk;
+    return rook;
 }
 
 // Bishop graph
 graph graph_bishop(index n, index m) // The bishop moves diagonally
 {
-    graph Bp(n*m);
+    graph bishop(n*m);
     for(index i=0; i<n; i++){
         for(index j=0; j<m; j++){
             vertex v=i*m+j; 
             for(index k=1; i+k<n && j+k<m; k++){
-                Bp[v].push_back(v+k*m+k);
-                Bp[v+k*m+k].push_back(v);
+                bishop[v].push_back(v+k*m+k);
+                bishop[v+k*m+k].push_back(v);
             }
             for(index k=1; i+k<n && j>=k; k++){
-                Bp[v].push_back(v+k*m-k);
-                Bp[v+k*m-k].push_back(v);
+                bishop[v].push_back(v+k*m-k);
+                bishop[v+k*m-k].push_back(v);
             }
                
         }
     }
 
-    return Bp;
+    return bishop;
 }
 
 // Knight graph
 graph graph_knight(index n, index m) // The knight moves one step forward and another step across
 {
-    graph Kt(n*m);
+    graph knight(n*m);
     for(index i=0; i<n; i++){
         for(index j=0; j<m; j++) {
             vertex v = i*m+j;
             if(i<n-1 && j<m-2) {
-                Kt[v].push_back(v+m+2);
-                Kt[v+m+2].push_back(v);
+                knight[v].push_back(v+m+2);
+                knight[v+m+2].push_back(v);
             }
             if(i<n-1 && j>1){
-                Kt[v].push_back(v+m-2);
-                Kt[v+m-2].push_back(v);
+                knight[v].push_back(v+m-2);
+                knight[v+m-2].push_back(v);
             }
             if(i<n-2 && j<m-1) {
-                Kt[v].push_back(v+2*m+1);
-                Kt[v + 2*m + 1].push_back(v);
+                knight[v].push_back(v+2*m+1);
+                knight[v + 2*m + 1].push_back(v);
             }
             if(i<n-2 && j>0) {
-                Kt[v].push_back(v+2*m-1);
-                Kt[v+2*m-1].push_back(v);
+                knight[v].push_back(v+2*m-1);
+                knight[v+2*m-1].push_back(v);
             }
         }
     }
 
-    return Kt;
+    return knight;
 }
 
-void chess_graph_write(graph& G, index n1, index n2, ofstream& fout)
+void chess_graph_write(graph& G, index n1, index n2, ofstream& fout, int opt)
 {
 
 	vertex vn = G.size();
@@ -113,7 +113,7 @@ void chess_graph_write(graph& G, index n1, index n2, ofstream& fout)
     }  
     en /= 2;
      
-    fout << "This -piece- has a total of " << en << " possible final destinations " << endl; // substituir piece pel nom en angles
+    fout << "has a total of " << en << " possible final destinations " << endl; 
     fout << "\nWhere can it get to?" << endl;
 
     for(vertex v=0; v<vn; v++){

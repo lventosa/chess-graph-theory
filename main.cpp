@@ -9,28 +9,27 @@ int main()
 
     do{
         cout << "Pick a piece:\n1. King\n2. Bishop\n3. Knight\n4. Rook\n5. Exit" << endl;
-        scanf("%d", &opt); // comprovar que realment es faci aixi
+        cin >> opt; 
 
         switch(opt){
             case 1:
                 graph king = graph_king(8, 8);
-                chess_graph_write(king, 8, 8, fout);
+                fout << "The king " << chess_graph_write(king, 8, 8, fout) << endl;
                 break;
 
             case 2:
                 graph bishop = graph_bishop(8, 8);
-                // comprovar si el color afecta. Si afecta, preguntar si juga a blanques o negres 
-                chess_graph_write(bishop, 8, 8, fout);
+                fout << "The bishop " << chess_graph_write(bishop, 8, 8, fout) << endl;
                 break;
 
             case 3:
                 graph knight = graph_knight(8, 8);
-                chess_graph_write(knight, 8, 8, fout);
+                fout << "The knight " << chess_graph_write(knight, 8, 8, fout) << endl;
                 break;
 
             default:
                 graph rook = graph_rook(8, 8);
-                chess_graph_write(rook, 8, 8, fout);
+                fout << "The rook " << chess_graph_write(rook, 8, 8, fout) << endl;
         }
 
     }while(opt!=5);
