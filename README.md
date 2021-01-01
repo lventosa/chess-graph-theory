@@ -1,1 +1,1 @@
-# Graph theory on chess board
+# Graph theory on a chessboard
