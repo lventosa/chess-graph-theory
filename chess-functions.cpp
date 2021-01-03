@@ -89,6 +89,7 @@ graph graph_rook(index n, index m) // The rook moves in a straight line
 }
 
 // Bishop graph
+
 graph graph_bishop(index n, index m) // The bishop moves diagonally
 {
     graph bishop(n*m);
@@ -141,6 +142,8 @@ graph graph_knight(index n, index m) // The knight moves one step forward and an
 
     return knight;
 }
+
+// Writes output to a file 
 
 void chess_graph_write(graph& G, index n1, index n2, ofstream& fout)
 {
