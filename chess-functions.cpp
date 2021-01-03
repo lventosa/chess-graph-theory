@@ -1,6 +1,7 @@
 #include "graphs.h"
 
 // King graph 
+
 graph graph_king(index n, index m) // The king can only move forward one step but in any direction
 {
     graph king(n*m); 
@@ -32,6 +33,7 @@ graph graph_king(index n, index m) // The king can only move forward one step bu
 }
 
 // Queen graph
+
 graph graph_queen(index n, index m)
 {
     graph queen(n*m);
@@ -63,6 +65,7 @@ graph graph_queen(index n, index m)
 }
 
 // Rook graph
+
 graph graph_rook(index n, index m) // The rook moves in a straight line
 {
     graph rook(n*m);
@@ -109,9 +112,11 @@ graph graph_bishop(index n, index m) // The bishop moves diagonally
 }
 
 // Knight graph
+
 graph graph_knight(index n, index m) // The knight moves one step forward and another step across
 {
     graph knight(n*m);
+    
     for(index i=0; i<n; i++){
         for(index j=0; j<m; j++) {
             vertex v = i*m+j;
@@ -140,7 +145,7 @@ graph graph_knight(index n, index m) // The knight moves one step forward and an
 void chess_graph_write(graph& G, index n1, index n2, ofstream& fout)
 {
 
-	vertex vn = G.size();
+    vertex vn = G.size();
 
     edge en = 0; 
     for(vertex v=0; v<vn; v++){ 
